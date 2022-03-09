@@ -9,5 +9,5 @@ Students are expected to:
 Student Info
 =========================
 
-* Student Name: Nguyen Huy Hoang
+* Student Name: Nguyễn Huy Hoàng
 * Student ID: BA10-021
