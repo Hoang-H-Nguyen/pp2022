@@ -2,6 +2,8 @@ numberOfStudent = 0
 numberOfCourse = 0
 students_list = list()
 student_info = dict()
+course_list = list()
+course_infor = dict()
 
 
 def number_student():
@@ -12,7 +14,7 @@ def number_student():
 def student_infor():
     global student_info
     global students_list
-    for i in range(numberOfStudent):
+    for student in range(numberOfStudent):
         student_info = {
             "id": input("Enter ID: "),
             "name":  input("Enter name: "),
@@ -31,10 +33,36 @@ def number_course():
     numberOfCourse = int(input("Enter number of course: "))
 
 
-number_student()
-print(f"number of student: {numberOfStudent}")
-number_course()
-print(f"Number of course: {numberOfCourse}")
-student_infor()
-print_student_list()
+def course_information():
+    global course_infor
+    global course_list
+    for course in range(numberOfCourse):
+        course_infor = {
+            "id": input("Enter ID of the course: "),
+            "nameOfCourse": input("Enter the name of the course: ")
+        }
+        course_list.append(course_infor)
 
+
+def course_mark_input():
+    global students_list
+    global student_info
+    course = input("Select the course: ")
+    for student in students_list:
+        student.update({course: None})
+        notification = f"Enter the mark of {student['id']} {student['name']}: "
+        mark = float(input(notification))
+        student[course] = mark
+
+
+def start_program():
+    number_student()
+    number_course()
+    student_infor()
+    print_student_list()
+    course_information()
+    course_mark_input()
+    print_student_list()
+
+
+start_program()
