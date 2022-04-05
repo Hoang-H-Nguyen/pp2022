@@ -1,3 +1,7 @@
+import numpy as np
+import math
+
+
 class Student:
     def __init__(self, id: str, name: str, DoB: str):
         # Assign to self object
@@ -90,6 +94,7 @@ class Mark:
         print(f"Enter mark of the course {courseId} for students")
         for student in students:
             mark = float(input(f"- Enter the mark of student: {student['Student ID']}-{student['Student Name']}: "))
+            mark = math.floor(mark)
             student['marks'][courseId] = mark
 
     def display_mark(courseId, student_list):
@@ -122,6 +127,35 @@ def Mark_of_a_course(course_id, student_list):
     Mark.display_mark(course_id, student_list)
 
 
+def choose_course_to_mark(course_list, student_list):
+    while True:
+        choice = input("Enter any key or 'exit' to not entering mark: ")
+        if choice == 'exit':
+            break
+        course_id = Mark.select_course(course_list)
+        Mark_of_a_course(course_id, student_list)
+
+
+def calculate_GPA(student_list):
+    chosen_student = input("Enter student ID you want to calculate GPA: ")
+    for student in student_list:
+        if chosen_student == student['Student ID']:
+            total_credit = 0
+            total_point = 0
+            course_ID = list(student['marks'].keys())
+            data = list(student['marks'].values())
+            arrayPoints = np.array(data)
+            for i in range(len(arrayPoints)):
+                print(f"This is the point of the course {course_ID[i]}: {arrayPoints[i]}")
+                credit = int(input(f"Enter number of credits you want of the course for the students {student['Student ID']}: "))
+                total_credit += credit
+                points = arrayPoints[i] * credit
+                total_point += points
+            gpa = float(total_point) / total_credit
+            return gpa
+    print("There is not this student ID in the list")
+
+
 def start_program():
     student_list = list()
     course_list = list()
@@ -132,9 +166,9 @@ def start_program():
 
     course_num = Course.course_number()
     inputCourseInfor(course_num, course_list)
-
-    course_id = Mark.select_course(course_list)
-    Mark_of_a_course(course_id, student_list)
+    choose_course_to_mark(course_list, student_list)
+    gpa = calculate_GPA(student_list)
+    print(gpa)
 
 
 start_program()

@@ -1,2 +1,2 @@
-for student in student_list:
-    print(student.__repr__())
+            # mark = input("- Enter the mark of student: {student}")
+            # student['mark'][courseId] = mark
