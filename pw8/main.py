@@ -48,12 +48,13 @@ def start_program():
     student_num = Student.student_number()
     inputStudentInfor(student_num, student_list)
     Student.display_student_list(student_list)
-
+    # thread
     t = time.time()
     t0 = threading.Thread(target=compress, args=('students.txt', 'students_data.dat',))
     t0.start()
     t0.join()
     print ("done in ", time.time() - t)
+    # thread
 
     try:
         t = time.time()
@@ -69,7 +70,7 @@ def start_program():
         print ("done in ", time.time()- t)
     except:
         print('error')
-
+    # thread
     t = time.time()
     t4 = threading.Thread(target=decompress, args=('students_data.dat',))
     t4.start()
