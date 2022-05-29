@@ -1,1 +1,1 @@
-start_program
+backgroundThread.join()
